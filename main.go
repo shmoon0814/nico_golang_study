@@ -54,4 +54,5 @@ func main() {
 
 	arrayLeng := returnWord("하나", "둘", "셋", "넷", "다섯")
 	fmt.Println(arrayLeng)
+
 }
