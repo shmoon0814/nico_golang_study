@@ -1,17 +1,28 @@
 package main
 
-import (
-	"fmt"
-	"github.com/shmoon0814/learngo/something"
-)
+import "fmt"
 
+const t = "자료형이없는변수"
+
+var aa string = "자료형이 있는 변수"
+
+//aa = "자료형이 있는놈 변경"  안됨 func 안에서만 변경 가능 상수 const 써야 할듯 하다..
+//bb := "스트링" 자료형 자동 설정도 func 밖에선 안됨
 func main() {
-	fmt.Println("Hello World!")
-	something.SayHello()
+	const name = "상혁"
+	//name = "낄렵" //const는 변경 할 수 없습니다.
 
-	// Println 이 대문자로 실행되는 이유는
-	// go 에선 Uppercase method 는 public
-	// lowercase method 는 private
-	// main에서는 helloWorld를 찾을 수 없지만 something 패키지 내부에서는 호출 할 수 있다.
-	// 대부분의 호출 되는 메소드 들은 대문자로 시작 할 것
+	var sang string = "하이"
+	sang = "변경가능"
+
+	moon := "초기화"
+	moon = "go가 타입을 초기화 해줌"
+
+	fmt.Println(name)
+	fmt.Println(sang)
+	fmt.Println(moon)
+	fmt.Println(t)
+	fmt.Println(aa)
+	fmt.Println(bb)
+
 }
