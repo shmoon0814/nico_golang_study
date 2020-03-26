@@ -1,24 +1,34 @@
 package main
 
-import (
-	"fmt"
-	"strings"
-)
+import "fmt"
 
-//naked return 음 글쌔 얘는... 잘... 흠... 리턴에 변수명, 자료형 선언해주면 내부에서 로직 돌린 후 리턴만하면 자동으로 넘긴다.. 뭐 이런
-func checkLengthAndWord(words string) (length int, uppercase string) {
-	length = 4
-	uppercase = strings.ToUpper(words)
-	return
+//range 를 이용한 루르
+func addSuperIndexValue(numbers ...int) (returnvalue int) {
+	//인덱스를 안쓸 경우는 _ 로 무시해버리기
+	for _, value := range numbers {
+		returnvalue += value
+	}
+	return //naked return
 }
 
-//defer 시벌 이거 대박 promise...
-func deferCheck() {
-	defer fmt.Println("이게 defer 야.. 특정 동작행위를 끝내고 마지막에 동작한다")
-	fmt.Println("얘가 먼저 실행되고")
+func printIndexValue(numbers ...int) {
+	for i, v := range numbers {
+		fmt.Println(i, v)
+	}
+}
+
+func oldFor(numbers ...int) {
+	for i := 0; i < len(numbers); i++ {
+		fmt.Println(numbers[i])
+	}
 }
 
 func main() {
-	fmt.Println(checkLengthAndWord("sanghyuk"))
-	deferCheck()
+	printIndexValue(6, 5, 3, 2, 1, 0)
+
+	fmt.Println("줄바꿈")
+	value := addSuperIndexValue(1, 4, 4, 3, 2, 5, 43)
+	fmt.Println(value)
+	fmt.Println("줄바꿈")
+	oldFor(4, 3, 2, 5, 3, 2, 1)
 }
