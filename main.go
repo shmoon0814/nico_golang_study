@@ -1,24 +1,25 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	a := 2
-	b := a
-	fmt.Println(&a, &b)
-	//주소 확인
+	//얜 배열이다
+	names := [5]string{"가", "나", "다"}
+	fmt.Println(names)
 
-	c := 4
-	d := &c //주소값을 저장하는 법
-	fmt.Println(&c, d)
-	fmt.Println(*d) //여기서 d가 왜 4가 나오냐면
-	//자동타입 추론으로 인하여 &가 달렸으면 주소를 나타내는 자료형이라서
-	//d는 메모리 주소를 나타내는 자료형이고 *는 메모리 자료형의 주소의 값을 나타내는 것
+	//얜 slice다
+	products := []string{"상자", "사과"}
+	fmt.Println(products)
 
-	e := 3
-	f := &e
-	*f = 20
-	fmt.Println(e, &e)
-	//주소값을 가지고 해당 값을 변경할 수도 있다.
+	// 이거 하면 오류남.. 왜냐고? 명시를 안해줬거든. slice에 추가하려면 아래 append 함수 사용함
+	//products[2] = "하나추가요"
+	//fmt.Println(products)
 
+	//append 함수는 ArrayList구현체인거 같음. 왜냐면.. add하면 new Array( old array +1 뭐였지 기억이안나 쉬프트연산인데
+	//이거해서 +1하고 slice를 새로 리턴해주기때문)
+	products = append(products, "고릴라나스가")
+	fmt.Println(products)
+	fmt.Println(append(products, "고릴라나스가"))
 }
