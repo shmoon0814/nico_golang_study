@@ -2,33 +2,20 @@ package main
 
 import "fmt"
 
-//range 를 이용한 루르
-func addSuperIndexValue(numbers ...int) (returnvalue int) {
-	//인덱스를 안쓸 경우는 _ 로 무시해버리기
-	for _, value := range numbers {
-		returnvalue += value
-	}
-	return //naked return
-}
+func canIDrink(age int) bool {
 
-func printIndexValue(numbers ...int) {
-	for i, v := range numbers {
-		fmt.Println(i, v)
+	//일반적으로 위에 플래그 선언하고 쓰는거랑 if문 안에 넣을 수 있는거랑 차이가 없다.
+	//하지만 이렇게 쓰는 이유는 해당 변수는 해당 if 문에서만 쓰기 위해서 선언한 변수다.. 라는 약속같은거..
+	if koreanAge := age + 2; koreanAge < 18 {
+		return false
 	}
-}
+	return true
 
-func oldFor(numbers ...int) {
-	for i := 0; i < len(numbers); i++ {
-		fmt.Println(numbers[i])
-	}
 }
 
 func main() {
-	printIndexValue(6, 5, 3, 2, 1, 0)
 
-	fmt.Println("줄바꿈")
-	value := addSuperIndexValue(1, 4, 4, 3, 2, 5, 43)
-	fmt.Println(value)
-	fmt.Println("줄바꿈")
-	oldFor(4, 3, 2, 5, 3, 2, 1)
+	flag := canIDrink(16)
+	fmt.Println(flag)
+
 }
