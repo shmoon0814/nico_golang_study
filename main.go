@@ -5,21 +5,35 @@ import (
 )
 
 func main() {
-	//얜 배열이다
-	names := [5]string{"가", "나", "다"}
-	fmt.Println(names)
+	//선언이 신기하내.. [키 자료형] 베률
+	sanghyuk := map[string]string{"name": "상혁", "age": "12"}
 
-	//얜 slice다
-	products := []string{"상자", "사과"}
-	fmt.Println(products)
+	//맵 추가는 이런식으로 해주면 됨
+	sanghyuk["op.gg"] = "http://localhost:8080"
+	//문법이 죄다 통일되고있냉.. 좋다.
 
-	// 이거 하면 오류남.. 왜냐고? 명시를 안해줬거든. slice에 추가하려면 아래 append 함수 사용함
-	//products[2] = "하나추가요"
-	//fmt.Println(products)
+	for key, value := range sanghyuk {
+		fmt.Println(key, value)
+	}
 
-	//append 함수는 ArrayList구현체인거 같음. 왜냐면.. add하면 new Array( old array +1 뭐였지 기억이안나 쉬프트연산인데
-	//이거해서 +1하고 slice를 새로 리턴해주기때문)
-	products = append(products, "고릴라나스가")
-	fmt.Println(products)
-	fmt.Println(append(products, "고릴라나스가"))
+	for _, value := range sanghyuk {
+		fmt.Println(value)
+	}
+
+	//이런 식으로 하는건.. 별로 안좋은데 이게 다 보여주냉??
+	favFood := []string{"kimchi", "sushi"}
+
+	//IDE 상에선 잘 보이는디
+	//소스코드상에선 아래걸로 명시해주는게 훨씬 보기 좋다.
+	nico := person{"sanghyuk", 18, favFood}
+
+	nico2 := person{name: "ninicoco", age: 41, favFood: favFood}
+	fmt.Println(nico)
+	fmt.Println(nico2)
+}
+
+type person struct {
+	name    string
+	age     int
+	favFood []string
 }
