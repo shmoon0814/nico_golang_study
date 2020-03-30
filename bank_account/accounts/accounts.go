@@ -38,3 +38,13 @@ func (a *account) WithDraw(amount int) error {
 		return nil
 	}
 }
+
+// ChangeOwner
+func (a *account) ChangeOwner(newOwner string) {
+	a.owner = newOwner
+}
+
+//값을 변경 안하고 바로 리턴 해 줄꺼니가 그냥 복사본 써도 된다
+func (a account) Owner() string {
+	return a.owner
+}

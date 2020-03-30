@@ -18,6 +18,6 @@ func main() {
 		fmt.Println(err)
 	}
 	//error handler를 이렇게 작성을 직접 해줘야 한다...
+	fmt.Println(account.Balance(), account.Owner())
 
-	fmt.Println(account.Balance())
 }
