@@ -2,24 +2,40 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"net/http"
 )
 
 func main() {
-	go sexyCount("nico")
-	go sexyCount("sanghyuk")
-	go sexyCount("gogo")
-	// 이게 둘다 go 를 달면 안되는 이유가 있다.
-	// go의 메인함수가 진행되는 동안에만 goroutine 이 걸림
-	//즉 둘다 비동기로 실행되버리면 메인함수가?? 끝나버리지... ㅇㅋ??
 
-	time.Sleep(time.Second * 5)
-	//자 main 함수는 함수의 결과가 저장되는 곳이다..
+	c := make(chan result)
+	urls := [5]string{
+		"https://www.naver.com",
+		"https://bigfinance.co.kr",
+		"https://www.google.com",
+		"https://youtube.com",
+		"https://github.com/shmoon0814",
+	}
+
+	for _, url := range urls {
+		go checkURL(url, c)
+	}
+
+	for i := 0; i < len(urls); i++ {
+		fmt.Println(<-c)
+	}
+
 }
 
-func sexyCount(person string) {
-	for i := 0; i < 10; i++ {
-		fmt.Println(person, "is sexy", i)
-		time.Sleep(time.Second)
+func checkURL(url string, c chan result) {
+	resp, err := http.Get(url)
+	status := "OK"
+	if err != nil || resp.StatusCode >= 400 {
+		status = "FAILED"
 	}
+	c <- result{url: url, status: status}
+}
+
+type result struct {
+	url    string
+	status string
 }
