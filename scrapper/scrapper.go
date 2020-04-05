@@ -1,4 +1,4 @@
-package main
+package scrapper
 
 import (
 	"encoding/csv"
@@ -13,7 +13,8 @@ import (
 
 var baseURL string = "https://kr.indeed.com/jobs?q=python&limit=50"
 
-func main() {
+func Scrape(term string) {
+	baseURL = "https://kr.indeed.com/jobs?q=+" + term + "&limit=50"
 	var jobs []extractedJob
 	ch := make(chan []extractedJob)
 	totalPages := getPages()
@@ -29,6 +30,7 @@ func main() {
 	}
 
 	writeJobs(jobs)
+	fmt.Println("Scrapping Done!")
 }
 func writeJobs(jobs []extractedJob) {
 	file, err := os.Create("jobs.csv")
